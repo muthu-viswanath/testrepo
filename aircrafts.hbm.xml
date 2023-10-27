@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE hibernate-mapping PUBLIC 
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd"> 
+      
+<hibernate-mapping>
+	<class name="india.bharath.models.Aircraft" table="aircraft" discriminator-value="aircraft">
+		<id name="flightid">
+			<generator class="increment"></generator>
+		</id>
+		
+		<discriminator column="type" type="string"></discriminator>
+		<property name="flightno" type="int"></property>
+		<property name="flightType"></property>
+		<property name="pilotName"></property>
+
+	<subclass name="india.bharath.models.PassengerFlight" discriminator-value="Passenger">
+		<property name="passenger_charges" type="int"></property>
+		<property name="passengerCapacity" type="int"></property>
+	</subclass>
+	
+	<subclass name="india.bharath.models.CargoFlight" discriminator-value="Cargo">
+		<property name="cargo_charges" type="int"></property>
+		<property name="cargoCapacity" type="int"></property>
+	</subclass>
+	
+	<subclass name="india.bharath.models.FighterJet" discriminator-value="Fighter">
+		<property name="payload"></property>
+	</subclass>
+	
+	</class>
+	
+</hibernate-mapping>
